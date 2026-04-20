@@ -1,0 +1,26 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Cuando el mouse está encima -->
+    <item android:state_hovered="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#22000000"/> <!-- leve sombra -->
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- Cuando se presiona -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#33000000"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+
+    <!-- Estado normal -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+</selector>
