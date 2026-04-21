@@ -58,7 +58,6 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:background="@drawable/btn_hover"
-                android:contentDescription="Facebook"
                 android:clickable="true"
                 android:focusable="true" />
 
@@ -71,7 +70,6 @@
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
                 android:background="@drawable/btn_hover"
-                android:contentDescription="Google"
                 android:clickable="true"
                 android:focusable="true"/>
 
@@ -85,7 +83,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="or"
+            android:text="@string/or"
             android:gravity="center"
             android:textColor="#FFFFFF"
             android:layout_marginTop="10dp"/>
@@ -99,8 +97,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textInputEditText4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/login_style"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="20dp"
@@ -120,8 +117,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textInputEditText3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        style="@style/login_style"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="20dp"
@@ -143,12 +139,11 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#03A9F4"
             android:drawableLeft="@drawable/login_24px"
-            android:drawableTint="#FBFBFB"
+            style="@style/ButtonTheme"
             android:fontFamily="@font/aboreto"
             android:text="@string/log_in"
-            android:textStyle="bold"/>
+            />
 
         <TextView
             android:id="@+id/textView9"
