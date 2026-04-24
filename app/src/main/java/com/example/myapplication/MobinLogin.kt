@@ -15,7 +15,7 @@ class MobinLogin : AppCompatActivity() {
 
     // Son lazy -> solo se crean cuando se necesita
     // tambien vemos ambito (scope), estan esta a nivel de clase
-    // pusheo prueba
+    // pusheo prueba 2
     lateinit var binding : ActivityMobinLoginBinding
 
 
