@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -40,10 +41,10 @@ class MobinLogin : AppCompatActivity() {
 
                 msg = "Usuario autenticado correctamente"
 
-                Toast.makeText(
-                    this,
-                    msg,
-                    Toast.LENGTH_LONG).show()
+                val intent2 =  Intent(this, Principal::class.java)
+                startActivity(intent2)
+
+
             }else{
                 msg = "Usuario incorrecto"
 
@@ -54,14 +55,18 @@ class MobinLogin : AppCompatActivity() {
             }
 
 
-
-
         }
 
-
-
-
-
     }
+
+
+    // IMPORTANTE!
+    // ES PARA CERRAR TODOS LOS PROCESOS QUE ESTEN PENDIENTES
+    // corrutinas
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
+
 
 }
