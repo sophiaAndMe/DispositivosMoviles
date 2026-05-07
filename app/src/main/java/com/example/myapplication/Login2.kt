@@ -11,15 +11,16 @@ class Login2 : AppCompatActivity() {
 
     lateinit var binding : ActivityLogin2Binding
 
-    var counter : Int = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
+
             binding = ActivityLogin2Binding.inflate(layoutInflater)
 
-            initVariable()
+            setContentView(binding.root)
 
         }
 

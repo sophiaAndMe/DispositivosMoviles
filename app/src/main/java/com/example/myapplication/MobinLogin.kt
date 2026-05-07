@@ -37,12 +37,22 @@ class MobinLogin : AppCompatActivity() {
 
             var msg = ""
 
-            if( binding.txtUsername.text.toString() == "admin" && binding.txtPassword.text.toString() == "root"){
+            if( binding.txtUsername.text.toString() == "admin"
+                && binding.txtPassword.text.toString() == "root"){
 
                 msg = "Usuario autenticado correctamente"
 
-                val intent2 =  Intent(this, Principal::class.java)
+                val intent2 =  Intent(
+                    this,
+                    Principal::class.java)
+
+                intent2.putExtra("xx1", "Hola Mundo")
+
+                // siempre hay que poner esta al final para que recupere los datos
                 startActivity(intent2)
+
+
+
 
 
             }else{
