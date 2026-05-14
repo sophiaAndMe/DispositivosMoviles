@@ -61,7 +61,8 @@ class MobinLogin : AppCompatActivity() {
                 Toast.makeText(
                     this,
                     msg,
-                    Toast.LENGTH_LONG).show()
+                    Toast.LENGTH_LONG)
+                    .show()
             }
 
 
