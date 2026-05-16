@@ -84,8 +84,9 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // RECYCLERVIEW
 
         var optionsEmpresas = listOf<Empresas>(
-            Empresas("Youtube", "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original"),
-        Empresas("Google", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiawM5VCV4cRb5Sbz5wIWtOhTLojJ_kJDsTA&s" )
+            Empresas("Youtube", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdWAHLE_HOsD6iFbpqtYy9hRMTwP9fYi3zEQ&s"),
+        Empresas("Google", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiawM5VCV4cRb5Sbz5wIWtOhTLojJ_kJDsTA&s" ),
+
         )
 
         var adapterRecyclerView = CustomAdapter(optionsEmpresas)
