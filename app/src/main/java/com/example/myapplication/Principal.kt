@@ -14,7 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.KeyPosition
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.adapters.CustomAdapter
 import com.example.myapplication.databinding.ActivityPrincipalBinding
+import com.example.myapplication.dto.Empresas
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.dialog.MaterialDialogs
 import com.google.android.material.snackbar.Snackbar
@@ -30,6 +35,7 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // binding de nuestra app
         super.onCreate(savedInstanceState)
         binding = ActivityPrincipalBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         initVariables()
@@ -58,7 +64,8 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         }
 
-        var options = listOf<String>("Youtube", "Google", "Facebook", "Apple")
+        var options = listOf("Youtube", "Google", "Facebook", "Apple, ")
+
 
         // por cada objeto en la lista option, tiene un simple layaout por cada uno y con
         // el adapter los unes
@@ -69,11 +76,35 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             options
             )
 
-        binding.spinnerURLs.adapter = adapter
-        binding.spinnerURLs.onItemSelectedListener = this@Principal
+//        binding.spinnerURLs.adapter = adapter
+//        binding.spinnerURLs.onItemSelectedListener = this@Principal
+
+
+
+        // RECYCLERVIEW
+
+        var optionsEmpresas = listOf<Empresas>(
+            Empresas("Youtube", "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original"),
+        Empresas("Google", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiawM5VCV4cRb5Sbz5wIWtOhTLojJ_kJDsTA&s" )
+        )
+
+        var adapterRecyclerView = CustomAdapter(optionsEmpresas)
+        binding.RvUrls.adapter = adapterRecyclerView
+//        binding.RvUrls.layoutManager = LinearLayoutManager(
+//
+//            this,
+//            LinearLayoutManager.HORIZONTAL,
+//            false
+//
+//        )
+        binding.RvUrls.layoutManager = GridLayoutManager(this, 2)
+
 
 
     }
+
+
+
 
 
     private fun initListeners() {

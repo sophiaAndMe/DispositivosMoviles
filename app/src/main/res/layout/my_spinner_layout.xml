@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@android:id/text1"
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/imgEmpresa"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"/>
+
+
+    <TextView
+        android:id="@+id/txtEmpresa"
         style="?android:attr/spinnerItemStyle"
         android:singleLine="true"
         android:layout_width="match_parent"
@@ -11,3 +24,5 @@
         android:textColor="@color/red"
         android:backgroundTint="@color/button_color"
         android:textAlignment="inherit"/>
+
+</LinearLayout>
