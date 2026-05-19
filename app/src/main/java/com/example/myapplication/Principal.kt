@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.app.AlertDialog
+import android.app.SearchManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -30,20 +31,21 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     // iniciacion perezosa
     private lateinit var binding: ActivityPrincipalBinding
 
+    var adapterRecyclerView = CustomAdapter({getName(it)},
+        {deleteEmpresas(it)})
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // binding de nuestra app
         super.onCreate(savedInstanceState)
         binding = ActivityPrincipalBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-
         initVariables()
-
-
         initListeners()
 
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -61,8 +63,8 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 saludo.toString(),
                 Snackbar.LENGTH_LONG
             ).show()
-
         }
+
 
         var options = listOf("Youtube", "Google", "Facebook", "Apple, ")
 
@@ -74,35 +76,53 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             // todos los recursos tiene la capacidad accederlo R
             R.layout.my_spinner_layout,
             options
-            )
-
-//        binding.spinnerURLs.adapter = adapter
-//        binding.spinnerURLs.onItemSelectedListener = this@Principal
-
+        )
 
 
         // RECYCLERVIEW
 
         var optionsEmpresas = listOf<Empresas>(
-            Empresas("Youtube", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdWAHLE_HOsD6iFbpqtYy9hRMTwP9fYi3zEQ&s"),
-        Empresas("Google", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiawM5VCV4cRb5Sbz5wIWtOhTLojJ_kJDsTA&s" ),
+            Empresas(
+                "Youtube",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdWAHLE_HOsD6iFbpqtYy9hRMTwP9fYi3zEQ&s",
+                "https://www.youtube.com"
+            ),
+            Empresas(
+                "Google",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiawM5VCV4cRb5Sbz5wIWtOhTLojJ_kJDsTA&s",
+                "https://www.google.com.ec"
+            ),
+            )
 
-        )
 
-        var adapterRecyclerView = CustomAdapter(optionsEmpresas)
+
+        /// para al app mobil, podriamos hacer esto y llamar SOLO  a una planta, y evitariamos cargarlas en una
+        /// base de datos, directamente llamarla y obtener en su formato json lo que necesitamos
         binding.RvUrls.adapter = adapterRecyclerView
-//        binding.RvUrls.layoutManager = LinearLayoutManager(
-//
-//            this,
-//            LinearLayoutManager.HORIZONTAL,
-//            false
-//
-//        )
         binding.RvUrls.layoutManager = GridLayoutManager(this, 2)
 
+        adapterRecyclerView.lista = optionsEmpresas as MutableList<Empresas>
+        adapterRecyclerView.notifyDataSetChanged()
+
+    }
+
+
+    fun getName(emp : Empresas){
+        val i = Intent(Intent.ACTION_WEB_SEARCH)
+        i.putExtra(SearchManager.QUERY, emp.name)
+        startActivity(i)
 
 
     }
+
+    fun deleteEmpresas(emp : Empresas){
+
+        var newEmpresas = adapterRecyclerView.lista.minus(emp)
+        adapterRecyclerView.lista = newEmpresas as MutableList<Empresas>
+        adapterRecyclerView.notifyDataSetChanged()
+    }
+
+
 
 
 
@@ -115,10 +135,7 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             val url = binding.urlText.text.toString()
 
-//            val i = Intent(Intent.ACTION_VIEW)
-//
-//            i.setData(Uri.parse(url))
-//            startActivity(i)
+
 
 
             val gmmIntentUri = Uri.parse("geo:-0.1967636,-78.5038821")

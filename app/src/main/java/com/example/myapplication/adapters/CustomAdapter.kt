@@ -11,7 +11,15 @@ import com.example.myapplication.dto.Empresas
 import com.squareup.picasso.Picasso
 
 
-class CustomAdapter(var lista : List<Empresas>) : RecyclerView.Adapter<CustomAdapter.CustomViewHolder>(){
+class CustomAdapter(
+            var onClick : (Empresas) -> Unit,
+            var onDelete : (Empresas) -> Unit )
+
+
+    : RecyclerView.Adapter<CustomAdapter.CustomViewHolder>(){
+
+    var lista : MutableList<Empresas> = ArrayList<Empresas>()
+
 
 
     override fun onCreateViewHolder(
@@ -36,7 +44,7 @@ class CustomAdapter(var lista : List<Empresas>) : RecyclerView.Adapter<CustomAda
         position: Int
     ) {
 
-        holder.render(lista[position])
+        holder.render(lista[position], onClick, onDelete)
 
     }
 
@@ -45,15 +53,27 @@ class CustomAdapter(var lista : List<Empresas>) : RecyclerView.Adapter<CustomAda
 
 
 
+    // solo cambiamos esto
     class CustomViewHolder (view : View) : RecyclerView.ViewHolder (view){
 
         private var localBindin  : MySpinnerLayoutBinding = MySpinnerLayoutBinding.bind(view)
-         fun render (item : Empresas) {
+
+        // aqui hacemos el evento onClick y decidimos lo que vamos hacer.
+         fun render (item : Empresas,
+                     onClick: (Empresas) -> Unit,
+                     onDelete: (Empresas) -> Unit) {
 
              localBindin.txtEmpresa.setText(item.name)
              Picasso.get()
                  .load(item.image)
                  .into(localBindin.imgEmpresa)
+
+            localBindin.imgEmpresa.setOnClickListener {
+                onClick(item)
+            }
+            localBindin.txtEmpresa.setOnClickListener {
+                onDelete(item)
+            }
 
 
         }

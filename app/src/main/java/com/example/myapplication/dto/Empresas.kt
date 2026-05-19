@@ -6,6 +6,6 @@ package com.example.myapplication.dto
 
 data class Empresas (
     val  name : String,
-    val  image : String
-
+    val  image : String,
+    val  url : String
 )
