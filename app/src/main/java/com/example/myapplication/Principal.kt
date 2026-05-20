@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.app.AlertDialog
 import android.app.SearchManager
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.adapters.CustomAdapter
+import com.example.myapplication.databinding.ActivityMobinLoginBinding
 import com.example.myapplication.databinding.ActivityPrincipalBinding
 import com.example.myapplication.dto.Empresas
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -31,8 +33,11 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     // iniciacion perezosa
     private lateinit var binding: ActivityPrincipalBinding
 
-    var adapterRecyclerView = CustomAdapter({getName(it)},
-        {deleteEmpresas(it)})
+    var adapterRecyclerView = CustomAdapter(
+        {getName(it)},
+        {deleteEmpresas(it)}
+    )
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,20 +71,16 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
 
-        var options = listOf("Youtube", "Google", "Facebook", "Apple, ")
 
 
-        // por cada objeto en la lista option, tiene un simple layaout por cada uno y con
-        // el adapter los unes
-        var adapter = ArrayAdapter(
-            this,
-            // todos los recursos tiene la capacidad accederlo R
-            R.layout.my_spinner_layout,
-            options
-        )
 
 
         // RECYCLERVIEW
+
+        /*
+        * por cada objeto en la lista, tiene un simple layaout por cada uno y con
+        * el adapter los unes
+       */
 
         var optionsEmpresas = listOf<Empresas>(
             Empresas(
@@ -92,52 +93,44 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiawM5VCV4cRb5Sbz5wIWtOhTLojJ_kJDsTA&s",
                 "https://www.google.com.ec"
             ),
+            Empresas(
+                "Instagram",
+                "https://png.pngtree.com/element_our/sm/20180630/sm_5b37de3263964.jpg",
+                "https://www.instagram.com/"
             )
-
+        )
 
 
         /// para al app mobil, podriamos hacer esto y llamar SOLO  a una planta, y evitariamos cargarlas en una
         /// base de datos, directamente llamarla y obtener en su formato json lo que necesitamos
         binding.RvUrls.adapter = adapterRecyclerView
         binding.RvUrls.layoutManager = GridLayoutManager(this, 2)
-
-        adapterRecyclerView.lista = optionsEmpresas as MutableList<Empresas>
-        adapterRecyclerView.notifyDataSetChanged()
+        adapterRecyclerView.submitList(optionsEmpresas)
 
     }
 
 
     fun getName(emp : Empresas){
+
         val i = Intent(Intent.ACTION_WEB_SEARCH)
         i.putExtra(SearchManager.QUERY, emp.name)
         startActivity(i)
-
 
     }
 
     fun deleteEmpresas(emp : Empresas){
 
-        var newEmpresas = adapterRecyclerView.lista.minus(emp)
-        adapterRecyclerView.lista = newEmpresas as MutableList<Empresas>
-        adapterRecyclerView.notifyDataSetChanged()
+        val listaActual = adapterRecyclerView.currentList.toMutableList()
+        listaActual.remove(emp)
+        adapterRecyclerView.submitList(listaActual)
+
     }
-
-
-
-
-
-
-
     private fun initListeners() {
 
+        // BUTTON
         binding.urlBtn.setOnClickListener {
 
-
-            val url = binding.urlText.text.toString()
-
-
-
-
+            binding.urlText.text.toString()
             val gmmIntentUri = Uri.parse("geo:-0.1967636,-78.5038821")
             val mapInten = Intent(Intent.ACTION_VIEW)
             mapInten.setData(gmmIntentUri)
@@ -145,15 +138,12 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             mapInten.setPackage("com.google.android.apps.maps")
             startActivity(mapInten)
 
-
-
-
         }
 
-
+        // AVISOS
         binding.logout.setOnClickListener {
 
-            val dialog = MaterialAlertDialogBuilder(this)
+                MaterialAlertDialogBuilder(this)
                 .setTitle("Cerrar sesion")
                 .setMessage("¿Esta seguro de salir de la aplicacion?")
                 .setCancelable(true)
@@ -169,6 +159,9 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 }
                 .show()
         }
+
+
+
 
     }
 

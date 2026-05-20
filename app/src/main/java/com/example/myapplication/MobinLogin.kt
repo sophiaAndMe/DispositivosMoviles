@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -52,9 +54,6 @@ class MobinLogin : AppCompatActivity() {
                 startActivity(intent2)
 
 
-
-
-
             }else{
                 msg = "Usuario incorrecto"
 
@@ -67,6 +66,24 @@ class MobinLogin : AppCompatActivity() {
 
 
         }
+
+        // LOGO FACEBOOK
+        binding.btnFacebook.setOnClickListener {
+            // 1. Creamos el Intent con la dirección (Uri) de tu página o perfil
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/fblink?path=TU_PAGINA"))
+            intent.setPackage("com.facebook.katana")
+
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                // 2. Si no tiene la app de Facebook, la abre de forma segura en el navegador
+                val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://facebook.com"))
+                startActivity(webIntent)
+            }
+
+        }
+
+
 
     }
 
