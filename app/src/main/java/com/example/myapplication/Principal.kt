@@ -140,26 +140,53 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         }
 
-        // AVISOS
-        binding.logout.setOnClickListener {
+
+        /*
+        *   Aqui ya esta haciendo el binding
+         */
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+
+            when (item.itemId) {
+
+            R.id.mn_home -> {
+                Snackbar.make(
+                    binding.RvUrls,
+                    item.title.toString() ,
+                            Snackbar.LENGTH_LONG
+                ).show()
+
+                true }
+
+            R.id.mn_pag1 -> {
+
+                val intent = Intent(this, Principal::class.java)
+                startActivity(intent)
+
+                true }
+            R.id.mn_pag2 -> {
 
                 MaterialAlertDialogBuilder(this)
-                .setTitle("Cerrar sesion")
-                .setMessage("¿Esta seguro de salir de la aplicacion?")
-                .setCancelable(true)
-                .setPositiveButton("Si"){
-                    dialog , id ->
-                    val intent = Intent(this, Principal::class.java)
-                    startActivity(intent)
-                }
-                .setNegativeButton("No"){
-                    dialog, id -> dialog.dismiss()
-                }.setNeutralButton("Cancelar"){
-                        dialog, id -> dialog.dismiss()
-                }
-                .show()
+                    .setTitle("Cerrar sesion")
+                    .setMessage("¿Esta seguro de salir de la aplicacion?")
+                    .setCancelable(true)
+                    .setPositiveButton("Si"){
+                            dialog , id ->
+                        val intent = Intent(this, Principal::class.java)
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("No"){
+                            dialog, id -> dialog.dismiss()
+                    }.setNeutralButton("Cancelar"){
+                            dialog, id -> dialog.dismiss()
+                    }
+                    .show()
+                true }
+            else -> false
         }
 
+
+        }
 
 
 
