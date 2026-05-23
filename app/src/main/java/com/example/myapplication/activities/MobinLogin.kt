@@ -1,16 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.databinding.ActivityMobinLoginBinding
 
 class MobinLogin : AppCompatActivity() {
@@ -46,7 +41,7 @@ class MobinLogin : AppCompatActivity() {
 
                 val intent2 =  Intent(
                     this,
-                    Principal::class.java)
+                    MainActivity::class.java)
 
                 intent2.putExtra("xx1", "Hola Mundo")
 

@@ -1,30 +1,19 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
-import android.app.AlertDialog
 import android.app.SearchManager
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.ViewParent
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.motion.widget.KeyPosition
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.adapters.CustomAdapter
-import com.example.myapplication.databinding.ActivityMobinLoginBinding
 import com.example.myapplication.databinding.ActivityPrincipalBinding
 import com.example.myapplication.dto.Empresas
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
 import com.google.android.material.snackbar.Snackbar
 import java.security.Principal
 

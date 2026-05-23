@@ -18,17 +18,17 @@
         android:theme="@style/Theme.MyApplication">
 
         <activity
-            android:name=".Principal"
+            android:name=".activities.Principal"
             android:exported="false" />
         <activity
-            android:name=".Login2"
+            android:name=".activities.Login2"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="false" />
         <activity
 
-            android:name=".MobinLogin"
+            android:name=".activities.MobinLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
