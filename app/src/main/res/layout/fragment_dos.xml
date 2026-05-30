@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/red"
-    tools:context=".fragments.FragmentDos">
+    tools:context=".fragments.FragmentDos"
+    android:orientation="vertical"
+    android:id="@+id/fragmentdos">
+
+
+    <Button
+        android:id="@+id/btnRegresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Vamos a listar"
+        />
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -12,4 +23,7 @@
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+
+
+</LinearLayout>

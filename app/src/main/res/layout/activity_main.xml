@@ -20,13 +20,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_nav_bar" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navFragmentViewer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toEndOf="@+id/bottomNavigationView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="80dp" />
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph= "@navigation/main_graph"
+        />
 
 </LinearLayout>

@@ -33,9 +33,7 @@ class MainActivity : AppCompatActivity() {
 
                     supportFragmentManager.commit()
                     {
-                        val f1 = FirstFrament()
-                        replace(R.id.frameLayout, f1)
-                        //addToBackStack(null)
+
                     }
                     true }
 
@@ -43,9 +41,7 @@ class MainActivity : AppCompatActivity() {
 
                     supportFragmentManager.commit {
 
-                        val f2 = FragmentDos()
-                        replace(R.id.frameLayout, f2)
-                        //addToBackStack(null)
+
                 }
 
                     true }
