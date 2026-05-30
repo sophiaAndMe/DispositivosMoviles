@@ -1,5 +1,6 @@
 package com.example.myapplication.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,12 +35,19 @@ class FragmentDos : Fragment() {
         initListeners()
     }
 
+    @SuppressLint("CheckResult")
     private fun initListeners() {
 
         binding.btnRegresar.setOnClickListener {
 
-            findNavController().navigate(R.id.action_fragmentDos_to_firstFrament2)
+           // findNavController().navigate(R.id.action_fragmentDos_to_firstFrament2)
 
+            /*
+                REVISAR - ESTO SIRVE PARA PASAR DATOS ENTRE FRAGMENTS
+             */
+
+
+            FragmentDosDirections.actionFragmentDosToFirstFrament2()
         }
 
 

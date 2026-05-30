@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.navigation.safeargs)
+
 }
 
 android {
@@ -55,6 +57,7 @@ dependencies {
     implementation(libs.picasso)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
 
 
 

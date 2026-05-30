@@ -46,6 +46,8 @@ class ListarFragment2 : Fragment() {
         binding.btnGoToListar.setOnClickListener {
 
             findNavController().navigate(R.id.action_fragmentDos_to_firstFrament2)
+
+
         }
 
     }
