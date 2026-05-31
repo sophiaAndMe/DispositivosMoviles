@@ -7,24 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
-import com.example.myapplication.databinding.ActivityPrincipalBinding
-import com.example.myapplication.databinding.FragmentFirstFramentBinding
+import com.example.myapplication.databinding.FragmentFirstBinding
 
 
-class FirstFrament : Fragment() {
+class FirstFragment : Fragment() {
 
-    lateinit var binding: FragmentFirstFramentBinding
-
+    lateinit var binding: FragmentFirstBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentFirstFramentBinding.inflate(
-            layoutInflater,
-            container,
-            false)
+        binding = FragmentFirstBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -32,20 +26,17 @@ class FirstFrament : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListeners()
+
     }
 
-    private fun initListeners() {
+    private fun initListeners(){
 
-        binding.btnGoRegresar.setOnClickListener {
+        binding.btnRegresar.setOnClickListener {
 
-            findNavController().navigate(R.id.action_fragmentDos_to_firstFrament2)
 
+            findNavController().navigate(
+                R.id.action_firstFragment_to_listaFragment)
         }
-
-
     }
-
-
-
 
 }

@@ -6,8 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.fragments.FirstFrament
-import com.example.myapplication.fragments.FragmentDos
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import java.security.Principal
@@ -30,24 +29,10 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.mn_home -> {
-
-                    supportFragmentManager.commit()
-                    {
-
-                    }
                     true }
-
                 R.id.mn_pag1 -> {
-
-                    supportFragmentManager.commit {
-
-
-                }
-
                     true }
-
                 R.id.mn_pag2 -> {
-
                     MaterialAlertDialogBuilder(this)
                         .setTitle("Cerrar sesion")
                         .setMessage("¿Esta seguro de salir de la aplicacion?")

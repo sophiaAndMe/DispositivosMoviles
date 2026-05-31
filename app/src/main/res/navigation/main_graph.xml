@@ -3,21 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/fragmentDos">
+    app:startDestination="@id/firstFragment">
 
     <fragment
-        android:id="@+id/firstFrament"
-        android:name="com.example.myapplication.fragments.FirstFrament"
-        android:label="fragment_first_frament"
-        tools:layout="@layout/fragment_first_frament" />
-
-    <fragment
-        android:id="@+id/fragmentDos"
-        android:name="com.example.myapplication.fragments.FragmentDos"
-        android:label="fragment_dos"
-        tools:layout="@layout/fragment_dos" >
+        android:id="@+id/firstFragment"
+        android:name="com.example.myapplication.fragments.FirstFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first" >
         <action
-            android:id="@+id/action_fragmentDos_to_firstFrament2"
-            app:destination="@id/firstFrament" />
+            android:id="@+id/action_firstFragment_to_listaFragment"
+            app:destination="@id/listaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listaFragment"
+        android:name="com.example.myapplication.fragments.ListaFragment"
+        android:label="fragment_lista"
+        tools:layout="@layout/fragment_lista" >
+        <action
+            android:id="@+id/action_listaFragment_to_firstFragment"
+            app:destination="@id/firstFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
 </navigation>
