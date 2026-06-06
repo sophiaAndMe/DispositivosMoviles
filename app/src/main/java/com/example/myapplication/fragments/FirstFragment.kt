@@ -36,6 +36,8 @@ class FirstFragment : Fragment() {
 
             findNavController().navigate(
                 R.id.action_firstFragment_to_listaFragment)
+            //FirstFragmentDirections.actionFirstFragmentToListaFragment(0, "XXX")
+
         }
     }
 

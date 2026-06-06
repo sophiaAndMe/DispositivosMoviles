@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_firstFragment_to_listaFragment"
             app:destination="@id/listaFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/listaFragment"
