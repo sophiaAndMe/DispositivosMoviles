@@ -3,20 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FirstFragment"
+    tools:context=".application.fragments.fragments.FirstFragment"
     android:background="@color/red">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
 
-    <Button
-        android:id="@+id/btnRegresar"
-        android:layout_marginTop="50dp"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Vamos a listar"/>
+        android:layout_height="match_parent"
+        android:layout_margin="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:text="Guardar datos"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Nombre"
+            android:textColor="@color/white" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Apellido"
+            android:textColor="@color/white" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastnameUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Guardar" />
+    </LinearLayout>
 
 </FrameLayout>

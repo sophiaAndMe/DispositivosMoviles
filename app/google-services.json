@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "109416951803",
+    "project_id": "dispomoviles2026-59e36",
+    "storage_bucket": "dispomoviles2026-59e36.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109416951803:android:54365caacbc6eb3d1f255e",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109416951803-beknc2lhlbsujcn7db1mgptvo554el77.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "2ad3b898f495bb620fc89cdb83f9e798b744dade"
+          }
+        },
+        {
+          "client_id": "109416951803-rib4qgslon27e3b6bg56cjhjl859gjl7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOgQvPNYGT4mLWHg8QCxp2rJdkiZEmARQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109416951803-rib4qgslon27e3b6bg56cjhjl859gjl7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

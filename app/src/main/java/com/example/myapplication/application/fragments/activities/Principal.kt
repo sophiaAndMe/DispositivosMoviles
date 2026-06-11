@@ -1,4 +1,4 @@
-package com.example.myapplication.activities
+package com.example.myapplication.application.fragments.activities
 
 import android.app.SearchManager
 import android.content.Intent
@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.R
-import com.example.myapplication.adapters.CustomAdapter
+import com.example.myapplication.application.fragments.adapters.CustomAdapter
 import com.example.myapplication.databinding.ActivityPrincipalBinding
 import com.example.myapplication.dto.Empresas
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
