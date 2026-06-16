@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.application.fragments.viewmodels.FirstViewModel
 import com.example.myapplication.databinding.FragmentFirstBinding
+import com.example.myapplication.logic.usercases.SaveUserUC
 import com.example.myapplication.remote.dto.UserDtoRemote
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
@@ -20,6 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.getValue
 
 
 class FirstFragment : Fragment() {
@@ -27,6 +31,10 @@ class FirstFragment : Fragment() {
     private lateinit var binding: FragmentFirstBinding
 
     private var db = Firebase.firestore
+
+    // voy a atar el ciclo de vida a esta clase kt
+    private val firstVM by viewModels<FirstViewModel>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +49,7 @@ class FirstFragment : Fragment() {
 
         initListeners()
         initVariables()
+        initObserver()
     }
 
 
@@ -57,37 +66,40 @@ class FirstFragment : Fragment() {
                 )
 
 
-                // hilo optimizado, ya va hacer ansincrono en .IO
-            // estara solo vivo hasta que el la activity este viva
+            // porque vamos a modificar la vista
+            lifecycleScope.launch (Dispatchers.Main) {
+                firstVM.contador()
+            }
 
-                lifecycleScope.launch(Dispatchers.Main){
-                    // salio del hilo principal y cuando termine regresara al hilo principal
-
-                    val usnew = withContext(Dispatchers.IO) {
-                        saveUser(user)
-                    }
-
-                    if(usnew.getOrNull() != null) {
-                        Snackbar.make(
-                            binding.nameUser,
-                            "Usuario guardado correctamente",
-                            Snackbar.LENGTH_SHORT)
-                            .show()
-                    }
-
-                }
+            lifecycleScope.launch (Dispatchers.Main) {
+                firstVM.guardarUsuario(user, db, SaveUserUC())
+            }
         }
     }
 
-    // TODO: debe estar en una capa intermedia para mas eficiencia
-    // inyecccion de dependencias
-    private suspend fun saveUser( user: UserDtoRemote) : Result<UserDtoRemote> {
-        var resp = db.collection("users")
-            .add(user)
-            // devuelve un result o un Drawaitvall
-            .await().runCatching{user}
-        return resp
+    // todo lo que diga observe hay que pasarle a una funcion
+    private fun initObserver(){
+
+
+        // empieza a observar el dato, si es que cambia lo vera!
+        firstVM.counterUI.observe(viewLifecycleOwner){
+            binding.contadorTxt.text = it.toString()
+        }
+
+        firstVM.userRemote.observe(viewLifecycleOwner) {
+
+            Snackbar.make(
+                binding.nameUser,
+                "Usuario guardado correctamente",
+                Snackbar.LENGTH_LONG)
+                .show()
+        }
+
+
+
     }
+
+
 
     private fun initVariables(){
          db = Firebase.firestore
