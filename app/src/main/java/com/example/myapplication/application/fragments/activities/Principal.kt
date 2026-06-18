@@ -152,7 +152,8 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 val intent = Intent(this, Principal::class.java)
                 startActivity(intent)
 
-                true }
+                true
+            }
             R.id.mn_pag2 -> {
 
                 MaterialAlertDialogBuilder(this)

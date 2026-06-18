@@ -24,13 +24,13 @@
             android:name=".application.fragments.activities.Login2"
             android:exported="false" />
         <activity
-            android:name=".application.fragments.activities.MainActivity"
+            android:name=".application.fragments.activities.MobinLogin"
             android:exported="false" />
         <activity
             android:name=".application.fragments.activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".application.fragments.activities.MobinLogin"
+            android:name=".application.fragments.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.logic.usercases.GetAllUserUC
 import com.example.myapplication.logic.usercases.SaveUserUC
 import com.example.myapplication.remote.dto.UserDtoRemote
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.integrity.internal.u
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
@@ -32,6 +34,12 @@ class FirstViewModel : ViewModel (){
 
     private var _userRemote = MutableLiveData<UserDtoRemote>()
 
+
+    val listUsuarios : LiveData<List<UserDtoRemote>>
+        get() = _listaUsuarios
+
+    private var _listaUsuarios = MutableLiveData<List<UserDtoRemote>>()
+
       fun contador() {
 
           // osea AHORA esta atado al counterUI, cada que cambia ese tambien
@@ -50,7 +58,6 @@ class FirstViewModel : ViewModel (){
     //             estara solo vivo hasta que el la activity este viva
 
     fun guardarUsuario(user: UserDtoRemote,
-                       db : FirebaseFirestore,
                        saveUserUC: SaveUserUC){
 
 
@@ -59,7 +66,7 @@ class FirstViewModel : ViewModel (){
         viewModelScope.launch{
             // salio del hilo principal y cuando termine regresara al hilo principal
 
-            val usnew = saveUserUC.saveUser(user, db)
+            val usnew = saveUserUC.saveUser(user)
 
             val usr = usnew.getOrNull()
 
@@ -72,6 +79,26 @@ class FirstViewModel : ViewModel (){
                     ""))
             }
 
+        }
+
+
+    }
+
+
+
+    fun listarUsuario(
+
+        getAllUserUC: GetAllUserUC
+
+    ){
+
+        viewModelScope.launch {
+            val usuarios =  getAllUserUC.invoke().getOrNull()
+
+            if(usuarios != null)
+                _listaUsuarios.value = usuarios
+            else
+                _listaUsuarios.value = listOf()
         }
 
 

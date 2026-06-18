@@ -12,8 +12,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
 import com.example.myapplication.application.fragments.viewmodels.FirstViewModel
 import com.example.myapplication.databinding.FragmentFirstBinding
+import com.example.myapplication.logic.usercases.GetAllUserUC
 import com.example.myapplication.logic.usercases.SaveUserUC
 import com.example.myapplication.remote.dto.UserDtoRemote
+import com.example.myapplication.repositories.connections.remote.UserRemoteImpl
+import com.example.myapplication.repositories.connections.remote.UserRepository
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.auth.User
@@ -60,7 +63,7 @@ class FirstFragment : Fragment() {
         binding.btnRegresar.setOnClickListener {
 
             val user = UserDtoRemote(
-                "",
+                "11",
                 binding.nameUser.text.toString(),
                 binding.lastnameUser.text.toString()
                 )
@@ -72,8 +75,26 @@ class FirstFragment : Fragment() {
             }
 
             lifecycleScope.launch (Dispatchers.Main) {
-                firstVM.guardarUsuario(user, db, SaveUserUC())
+                firstVM.guardarUsuario(user,
+                    SaveUserUC(
+                        UserRepository(
+                            UserRemoteImpl(db)
+                    )
+                )
+                )
             }
+
+            lifecycleScope.launch {
+
+                firstVM.listarUsuario(
+                    GetAllUserUC(
+                        UserRepository(
+                            UserRemoteImpl(db)
+                        )
+                    )
+                )
+            }
+
         }
     }
 
@@ -95,7 +116,15 @@ class FirstFragment : Fragment() {
                 .show()
         }
 
+        firstVM.listUsuarios.observe(viewLifecycleOwner) {
 
+            user ->
+                user.forEach {
+                    Log.d("TAG" , it.toString())
+                }
+
+
+        }
 
     }
 
