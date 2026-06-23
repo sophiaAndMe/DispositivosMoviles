@@ -1,14 +1,12 @@
-package com.example.myapplication.application.fragments.activities
+package com.example.myapplication.application.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import java.security.Principal
 
 class MainActivity : AppCompatActivity() {

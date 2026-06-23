@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".application.fragments.fragments.FirstFragment"
+    tools:context=".application.fragments.FirstFragment"
     android:background="@color/red">
 
 
@@ -52,6 +52,13 @@
             android:gravity="center"
             android:text="Guardar" />
 
+        <Button
+            android:id="@+id/btnAPI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Recuperar usuarios" />
+
         <TextView
             android:id="@+id/contadorTxt"
             android:layout_marginTop="32dp"
@@ -61,6 +68,8 @@
             android:text="0"
             android:gravity="center"
              />
+
+
 
 
     </LinearLayout>

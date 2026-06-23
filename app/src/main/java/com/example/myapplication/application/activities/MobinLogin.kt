@@ -1,4 +1,4 @@
-package com.example.myapplication.application.fragments.activities
+package com.example.myapplication.application.activities
 
 import android.content.ActivityNotFoundException
 import android.content.Intent

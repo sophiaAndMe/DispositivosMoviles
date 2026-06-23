@@ -18,19 +18,19 @@
         android:theme="@style/Theme.MyApplication">
 
         <activity
-            android:name=".application.fragments.activities.Principal"
+            android:name=".application.activities.Principal"
             android:exported="false" />
         <activity
-            android:name=".application.fragments.activities.Login2"
+            android:name=".application.activities.Login2"
             android:exported="false" />
         <activity
-            android:name=".application.fragments.activities.MobinLogin"
+            android:name=".application.activities.MobinLogin"
             android:exported="false" />
         <activity
-            android:name=".application.fragments.activities.RegisterActivity"
+            android:name=".application.activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".application.fragments.activities.MainActivity"
+            android:name=".application.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

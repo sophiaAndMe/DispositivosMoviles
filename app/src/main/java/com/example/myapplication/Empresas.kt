@@ -1,8 +1,4 @@
-package com.example.myapplication.dto
-
-
-
-//con esto ya tengo dto
+package com.example.myapplication
 
 data class Empresas (
     val  name : String,

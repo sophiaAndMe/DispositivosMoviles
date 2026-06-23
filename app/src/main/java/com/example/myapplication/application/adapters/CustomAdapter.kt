@@ -1,15 +1,14 @@
-package com.example.myapplication.application.fragments.adapters
+package com.example.myapplication.application.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.MySpinnerLayoutBinding
-import com.example.myapplication.dto.Empresas
+import com.example.myapplication.Empresas
 import com.squareup.picasso.Picasso
 
 

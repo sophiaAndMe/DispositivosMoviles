@@ -1,23 +1,16 @@
-package com.example.myapplication.application.fragments.viewmodels
+package com.example.myapplication.application.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.data.remote.dto.users.TypicodeUserDtoItem
 import com.example.myapplication.logic.usercases.GetAllUserUC
+import com.example.myapplication.logic.usercases.GetAllUsersFromTypi
 import com.example.myapplication.logic.usercases.SaveUserUC
 import com.example.myapplication.remote.dto.UserDtoRemote
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.play.integrity.internal.u
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 
 class FirstViewModel : ViewModel (){
@@ -39,6 +32,13 @@ class FirstViewModel : ViewModel (){
         get() = _listaUsuarios
 
     private var _listaUsuarios = MutableLiveData<List<UserDtoRemote>>()
+
+
+    val typiUser
+        get() = _typiUsers
+
+    private var _typiUsers = MutableLiveData<List<TypicodeUserDtoItem>?>()
+
 
       fun contador() {
 
@@ -101,6 +101,16 @@ class FirstViewModel : ViewModel (){
                 _listaUsuarios.value = listOf()
         }
 
+
+    }
+
+
+    fun getUserTypi() {
+
+        //atado al ciclo de vida de un model
+        viewModelScope.launch {
+            _typiUsers.value = GetAllUsersFromTypi().invoke()
+        }
 
     }
 

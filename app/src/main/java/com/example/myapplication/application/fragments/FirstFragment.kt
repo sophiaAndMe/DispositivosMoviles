@@ -1,4 +1,4 @@
-package com.example.myapplication.application.fragments.fragments
+package com.example.myapplication.application.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.example.myapplication.R
-import com.example.myapplication.application.fragments.viewmodels.FirstViewModel
+import com.example.myapplication.application.viewmodels.FirstViewModel
 import com.example.myapplication.databinding.FragmentFirstBinding
 import com.example.myapplication.logic.usercases.GetAllUserUC
 import com.example.myapplication.logic.usercases.SaveUserUC
@@ -19,12 +17,9 @@ import com.example.myapplication.repositories.connections.remote.UserRemoteImpl
 import com.example.myapplication.repositories.connections.remote.UserRepository
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
-import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlin.getValue
 
@@ -96,6 +91,18 @@ class FirstFragment : Fragment() {
             }
 
         }
+
+        binding.btnAPI.setOnClickListener {
+
+            // CORRUTINA
+            lifecycleScope.launch(Dispatchers.IO) {
+
+                     firstVM.getUserTypi()
+            }
+        }
+
+
+
     }
 
     // todo lo que diga observe hay que pasarle a una funcion
@@ -126,6 +133,13 @@ class FirstFragment : Fragment() {
 
         }
 
+        firstVM.typiUser.observe(viewLifecycleOwner) { it ->
+            it?.forEach {
+                Log.d("ITEMS", it.name)
+
+            }
+        }
+
     }
 
 
@@ -133,5 +147,10 @@ class FirstFragment : Fragment() {
     private fun initVariables(){
          db = Firebase.firestore
     }
+
+
+
+
+
 
 }
