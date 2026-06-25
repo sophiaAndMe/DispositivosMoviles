@@ -59,6 +59,13 @@
             android:gravity="center"
             android:text="Recuperar usuarios" />
 
+        <Button
+            android:id="@+id/btnSubir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="subirImagen" />
+
         <TextView
             android:id="@+id/contadorTxt"
             android:layout_marginTop="32dp"
