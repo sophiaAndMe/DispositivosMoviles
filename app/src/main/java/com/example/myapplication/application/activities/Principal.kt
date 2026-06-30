@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.application.adapters.CustomAdapter
 import com.example.myapplication.databinding.ActivityPrincipalBinding
-import com.example.myapplication.Empresas
+import com.example.myapplication.data.remote.dto.empresas.Empresas
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import java.security.Principal

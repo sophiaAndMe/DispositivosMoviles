@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.data.remote.dto.empresas
 
 data class Empresas (
     val  name : String,

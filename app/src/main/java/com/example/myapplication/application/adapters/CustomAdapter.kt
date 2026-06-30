@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.databinding.MySpinnerLayoutBinding
-import com.example.myapplication.Empresas
+import com.example.myapplication.data.remote.dto.empresas.Empresas
 import com.squareup.picasso.Picasso
 
 

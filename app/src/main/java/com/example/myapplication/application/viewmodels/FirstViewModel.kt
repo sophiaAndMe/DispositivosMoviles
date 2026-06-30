@@ -76,7 +76,8 @@ class FirstViewModel : ViewModel (){
             else {
                 (UserDtoRemote("",
                     "user no registrado",
-                    ""))
+                    "",
+                    null))
             }
 
         }

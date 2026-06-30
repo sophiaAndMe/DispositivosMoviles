@@ -4,6 +4,7 @@ data class UserDtoRemote (
 
     val id: String,
     val name : String,
-    val lastname : String
+    val lastname : String,
+    val imagen : String?
 
 )

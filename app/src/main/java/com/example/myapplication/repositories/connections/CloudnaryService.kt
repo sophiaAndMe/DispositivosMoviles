@@ -1,10 +1,11 @@
-package com.example.myapplication.repositories
+package com.example.myapplication.repositories.connections
 
 import android.util.Log
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import java.io.File
+import kotlin.collections.get
 
 object CloudnaryService {
 

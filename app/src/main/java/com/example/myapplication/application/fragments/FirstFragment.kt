@@ -13,13 +13,15 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.cloudinary.android.MediaManager
 import com.example.myapplication.application.viewmodels.FirstViewModel
 import com.example.myapplication.databinding.FragmentFirstBinding
 import com.example.myapplication.logic.usercases.GetAllUserUC
 import com.example.myapplication.logic.usercases.SaveUserUC
 import com.example.myapplication.remote.dto.UserDtoRemote
-import com.example.myapplication.repositories.CloudnaryService
+import com.example.myapplication.repositories.connections.CloudnaryService
+import com.example.myapplication.repositories.connections.local.LocalDataBase
 import com.example.myapplication.repositories.connections.remote.UserRemoteImpl
 import com.example.myapplication.repositories.connections.remote.UserRepository
 import com.google.android.material.snackbar.Snackbar
@@ -38,6 +40,8 @@ class FirstFragment : Fragment() {
     private lateinit var binding: FragmentFirstBinding
 
     private var db = Firebase.firestore
+
+    private lateinit var dbLocal : LocalDataBase
 
     // voy a atar el ciclo de vida a esta clase kt
     private val firstVM by viewModels<FirstViewModel>()
@@ -64,13 +68,21 @@ class FirstFragment : Fragment() {
 
 
 
-        binding.btnRegresar.setOnClickListener {
+        binding.btnGuardar.setOnClickListener {
+
+
+            viewGalery.launch(
+                PickVisualMediaRequest(
+                    ActivityResultContracts.PickVisualMedia.ImageOnly))
+
 
             val user = UserDtoRemote(
                 "11",
                 binding.nameUser.text.toString(),
-                binding.lastnameUser.text.toString()
+                binding.lastnameUser.text.toString(),
+                null
                 )
+
 
 
             // porque vamos a modificar la vista
@@ -82,7 +94,8 @@ class FirstFragment : Fragment() {
                 firstVM.guardarUsuario(user,
                     SaveUserUC(
                         UserRepository(
-                            UserRemoteImpl(db)
+                            UserRemoteImpl(db),
+                            dbLocal
                     )
                 )
                 )
@@ -93,7 +106,8 @@ class FirstFragment : Fragment() {
                 firstVM.listarUsuario(
                     GetAllUserUC(
                         UserRepository(
-                            UserRemoteImpl(db)
+                            UserRemoteImpl(db),
+                            dbLocal
                         )
                     )
                 )
@@ -112,8 +126,7 @@ class FirstFragment : Fragment() {
 
         binding.btnSubir.setOnClickListener {
 
-            viewGalery.launch(PickVisualMediaRequest(
-                ActivityResultContracts.PickVisualMedia.ImageOnly))
+
 
 
         }
@@ -173,7 +186,6 @@ class FirstFragment : Fragment() {
         }
 
     }
-
 
     private fun subirImagen(){
         val archivoCache = File(requireContext().cacheDir, "img_temp.jpg")
@@ -243,8 +255,6 @@ class FirstFragment : Fragment() {
 
     }
 
-
-
     private fun initVariables(){
          db = Firebase.firestore
 
@@ -258,6 +268,15 @@ class FirstFragment : Fragment() {
             requireContext(),
             config
         )
+
+
+        dbLocal = Room.databaseBuilder(
+            requireContext(),
+            LocalDataBase::class.java, "database-name"
+        ).build()
+
+        dbLocal.profilesDao().getAllProfiles()
+
     }
 
 
